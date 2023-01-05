@@ -1,0 +1,16 @@
+.wrapper {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    background-color: #1c1c1c;
+    height: 40px;
+    bottom: 0;
+    width: 100%;
+    border-top: 4px solid red;
+}
+.owner {
+    color: red;
+    padding: 0 40px;
+}
