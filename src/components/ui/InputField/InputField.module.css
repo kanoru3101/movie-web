@@ -1,0 +1,61 @@
+.form {
+    position: relative;
+    width: auto;
+}
+
+.input {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px #fff solid;
+    display: block;
+    width: 100%;
+    padding: 10px 0 5px 0;
+    font-size: 18px;
+    color: #fff;
+}
+
+.input:focus,
+.input:valid {
+    outline: 0;
+    border-bottom-color: #ef0000;
+}
+
+
+.label {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    pointer-events: none;
+}
+
+.letter {
+    display: inline-block;
+    font-size: 18px;
+    min-width: 5px;
+    color: #fff;
+    transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.emptyInput .letter,
+.input:focus+label .letter {
+    color: #ef0000;
+    transform: translateY(-20px);
+}
+
+.errorWrapper {
+    color: #ef0000;
+    height: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5px 10px 10px;
+}
+
+.errorIcon {
+    padding-right: 5px;
+}
+
+.input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #1c1c1c inset;
+    -webkit-text-fill-color: white !important;
+}
