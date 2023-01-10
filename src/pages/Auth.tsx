@@ -1,14 +1,7 @@
-import {Button, Input} from "../components/ui";
 import React from "react";
-import { BaseLayout } from '../layouts'
-const Auth = () => {
-    return (
-        <BaseLayout>
-            <Button>TEST</Button>
-            <Input name="Email"/>
-            <Input name="Password"/>
-        </BaseLayout>
-    )
+import { SignUp } from "../components/Auth";
+const AuthPage = () => {
+    return (<SignUp/>)
 }
 
-export default Auth;
+export default AuthPage;

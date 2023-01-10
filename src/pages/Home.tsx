@@ -1,5 +1,4 @@
 import logo from "../logo.svg";
-import {Button, Input} from "../components/ui";
 import React from "react";
 
 const Home = () => {
