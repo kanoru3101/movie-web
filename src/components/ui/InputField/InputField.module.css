@@ -38,7 +38,7 @@
 
 .emptyInput .letter,
 .input:focus+label .letter {
-    color: #ef0000;
+    color: #ffffff;
     transform: translateY(-20px);
 }
 
