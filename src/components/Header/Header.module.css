@@ -24,7 +24,12 @@
 .profileWrapper {
     display: flex;
     flex-grow: 2;
-    align-items: end;
+    align-items: flex-end;
     justify-content: flex-end;
     padding: 20px;
+}
+
+.navItem {
+    cursor: pointer;
+    text-transform: uppercase;
 }

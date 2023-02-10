@@ -1,0 +1,116 @@
+/* configuration */
+$primary-color: #1c1c1c;
+$secondary-color: #ef0000;
+$tertiary-color: #ffffff;
+$fill-color: transparent;
+$diameter: 40px;
+$border-width: 5px;
+$font-size: medium;
+$duration: .2s;
+
+/* mixin */
+@mixin circle($color) {
+  width: $diameter;
+  height: $diameter;
+  border: $border-width solid $color;
+  background: transparent;
+  border-radius: 100%;
+  transition: width $duration ease-out, height $duration ease-out, border-width $duration ease-out;
+}
+
+@mixin circle-hover {
+  width: $diameter + ($border-width);
+  height: $diameter + $border-width;
+  border-width: $border-width / 2;
+}
+
+/* placeholder */
+%fill-up-styles {
+  .percentage-bar:after {
+    position: absolute;
+    content: '';
+    clip-path: inset(0 0 0 50%);
+    transform: rotate(0deg);
+
+    @include circle($secondary-color);
+  }
+}
+
+%clip-styles {
+  .percentage-bar { clip-path: none; }
+}
+
+/* percentage circle style */
+.circle {
+  width: $diameter + ($border-width * 2);
+  height: $diameter + ($border-width * 2);
+  cursor: default;
+
+  span {
+    position: absolute;
+    display: block;
+    vertical-align: middle;
+    width: ($diameter + (2 * $border-width));
+    height: ($diameter + (2 * $border-width));
+    text-align: center;
+    color: $tertiary-color;
+    line-height: ($diameter + (2 * $border-width));
+    font-size: $font-size;
+    font-family: Helvetica, Arial, Geneva, sans-serif;
+    transition: font-size $duration ease-out;
+  }
+
+  &:before {
+    position: absolute;
+    content: '';
+    background-color: $fill-color;
+
+    @include circle($primary-color);
+  }
+
+  .percentage-bar {
+    width: $diameter + (2 * $border-width);
+    height: $diameter + (2 * $border-width);
+    position: absolute;
+    clip-path: inset(0 0 0 50%);
+
+    &:before {
+      position: absolute;
+      content: '';
+      clip-path: inset(0 50% 0 0);
+      transform: rotate(0deg);
+
+      @include circle($secondary-color);
+    }
+  }
+
+  @for $i from 1 through 100 {
+    &.percentage-#{$i} {
+      .percentage-bar:before {
+        transform: rotate(360deg / (100 / $i));
+      }
+    }
+  }
+
+  @for $i from 51 through 100 {
+    &.percentage-#{$i} { @extend %fill-up-styles }
+    &.percentage-#{$i} { @extend %clip-styles }
+  }
+}
+
+.circle-hover {
+  &:hover {
+    &:before {
+      @include circle-hover;
+    }
+    span {
+      font-size: $font-size + $border-width;
+    }
+    .percentage-bar {
+      &:before,
+      &:after {
+        @include circle-hover;
+      }
+    }
+   }
+}
