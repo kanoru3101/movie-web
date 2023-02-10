@@ -12,5 +12,4 @@ const getTopRate = async(): Promise<Response> => {
   return data;
 }
 
-
 export default getTopRate;
