@@ -1,1 +1,1 @@
-export const JWT_COOKIE_NAME = 'u';
+export const JWT_COOKIE_NAME = 'auth';

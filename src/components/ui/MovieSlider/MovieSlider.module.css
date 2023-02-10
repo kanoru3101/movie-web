@@ -1,0 +1,13 @@
+.wrapper {
+  width: 80vw;
+  height: auto;
+}
+
+.title {
+  padding: 10px 10px 20px;
+  color: #ef0000;
+  font-size: xx-large;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+}

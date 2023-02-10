@@ -1,5 +1,9 @@
 export type AuthUser = {
-    exp: number;
-    id: string;
-    token: string;
+    id: number;
+    email: string;
+    slug: string;
+    name?: string,
+    logo?: string,
+    language: string,
+
 }

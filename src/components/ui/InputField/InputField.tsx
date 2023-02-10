@@ -36,7 +36,6 @@ const GenerateLettersAnimation: React.FC<GenerateLettersAnimationProps>  = ({let
 const InputField: React.FC<Props> = ({
     field,
     label,
-    name,
     id,
     value,
     form: { touched, errors },

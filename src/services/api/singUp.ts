@@ -4,7 +4,11 @@ type Props = {
     email: string
     password: string
 }
-const signUp = async({ email, password}: Props): Promise<any> => {
+
+type Response = {
+    token: string
+}
+const signUp = async({ email, password}: Props): Promise<Response> => {
     const { data } = await apiClient.put('/auth', {
         email,
         password

@@ -23,3 +23,19 @@
     color: white;
     text-align: center;
 }
+
+.navigateToAuth {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    color: white;
+    align-items: center;
+    justify-content: center;
+}
+
+.linkToAuth {
+    cursor: pointer;
+    padding-left: 10px;
+    text-decoration: underline;
+    text-transform: uppercase;
+}

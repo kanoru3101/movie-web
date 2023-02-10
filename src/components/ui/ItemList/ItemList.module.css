@@ -1,0 +1,89 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  height: 100px;
+  width: auto;
+  margin: 10px;
+  padding: 5px;
+  border: #ef0000 solid 2px;
+  border-radius: 5px;
+}
+
+.movieImage {
+  height: 100px;
+  width: 120px;
+}
+
+.titleBlock {
+  color: #ef0000;
+  font-size: x-large;
+  font-weight: bold;
+  padding: 20px 10px 10px 10px;
+}
+
+.infoBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-grow: 1;
+  margin-left: 10px;
+  padding: 10px;
+}
+
+.actionBlock {
+    display: flex;
+    width: 40px;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.title {
+  color: white;
+  font-size: 20px;
+  padding-bottom: 10px;
+}
+
+.genresList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 5px;
+}
+
+.genre {
+    display: inline-block;
+	max-width: 120px;
+    min-width: 20px;
+	padding: 2px 7px;
+	margin: 5px;
+	border-radius: 10px;
+	color: #ffffff;
+    background-color: #ef0000;
+	align-items: center;
+	text-align: center;
+}
+
+.tagText {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: x-small;
+    margin: 0;
+}
+
+.iconWrapper {
+    margin: 5px 0px;
+    color: #ef0000;
+    size: 50px;
+    font-size: 1.2em;
+    cursor: pointer;
+}
