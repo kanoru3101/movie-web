@@ -13,21 +13,25 @@ const Home = () => {
 
   useEffect(() => {
     const getTrendingData = async () => {
-      const { results } = await getTrending()
-      // eslint-disable-next-line no-console
-      console.log(results)
-      setTrending(results)
+      // const { results } = await getTrending()
+      // // eslint-disable-next-line no-console
+      // console.log(results)
+      // setTrending(results)
+      setTrending([])
     }
     getTrendingData()
   }, [])
 
   return (
     <div className={styles.homeWrapper}>
+      <div className='embed-responsive embed-responsive-4by3'>
+        <iframe className='embed-responsive-item' src='https://waitron.menu/menu/desoey'></iframe>
+      </div>
       <div className={styles.cardListWrapper}>
         {trendings.length > 0 && (
           <MovieSlider title={t('homepage.trending')}>
             {
-              trendings?.slice(0,5)?.map((trending) => <MovieCard {...trending} />)
+              trendings?.map((trending) => <MovieCard {...trending} />)
             }
           </MovieSlider>
         )}
