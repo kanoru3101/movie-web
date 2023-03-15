@@ -1,5 +1,6 @@
 .homeWrapper {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     padding: 20px 30px;
 }
@@ -22,5 +23,5 @@
 }
 
 .cardListWrapper {
-
+  padding: 16px 0;
 }

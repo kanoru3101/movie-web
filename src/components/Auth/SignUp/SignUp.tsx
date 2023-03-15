@@ -5,6 +5,7 @@ import { Formik, Field } from 'formik'
 import * as Yup from 'yup'
 import useUser from '../../../providers/Auth/useUser'
 import { useNavigate } from 'react-router-dom'
+import React from 'react'
 
 const SignUp = () => {
   const { setUser } = useUser()

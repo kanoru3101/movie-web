@@ -1,7 +1,15 @@
 import apiClient from ".";
+import { Movie } from './types'
 
-const getTopRate = async(): Promise<any> => {
-  return await apiClient.get('/movies/top-rate')
+type AxiosResponse = {
+  data: Movie[]
+}
+
+type Response = AxiosResponse['data'];
+const getTopRate = async(): Promise<Response> => {
+  const { data } = await apiClient.get('/movies/top-rate')
+
+  return data;
 }
 
 

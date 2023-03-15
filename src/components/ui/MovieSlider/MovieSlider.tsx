@@ -18,7 +18,7 @@ const MovieSlider: React.FC<Props> = ({
     dots: true,
     infinite: true,
     speed: 1000,
-    autoplay: true,
+    autoplay: false,
     slidesToShow: 2
   }
   return (
