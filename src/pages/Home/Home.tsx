@@ -10,7 +10,7 @@ import getTopRate from '../../services/api/getTopRate'
 const Home = () => {
   const [trending, setTrending] = useState<Movie[]>([])
   const [topRate, setTopRate] = useState<Movie[]>([])
-  const [playingNow, setPlayingNow] = useState<Movie[]>([])
+  const [nowPlaying, setNowPlaying] = useState<Movie[]>([])
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -21,8 +21,8 @@ const Home = () => {
       const topRateData = await getTopRate()
       setTopRate(topRateData)
 
-      const playingData = await getNowPlaying()
-      setPlayingNow(playingData)
+      const nowPlayingData = await getNowPlaying()
+      setNowPlaying(nowPlayingData)
     }
 
     loadData()
@@ -52,7 +52,7 @@ const Home = () => {
         {trending.length > 0 && (
           <MovieSlider title={t('homepage.playingNow')}>
             {
-              playingNow?.map((movie) => <MovieCard {...movie} />)
+              nowPlaying?.map((movie) => <MovieCard {...movie} />)
             }
           </MovieSlider>
         )}
