@@ -3,31 +3,29 @@ import styles from './Home.module.css'
 import MovieCard from '../../components/ui/MovieCard/MovieCard'
 import { useTranslation } from 'react-i18next'
 import MovieSlider from '../../components/ui/MovieSlider/MovieSlider'
-import { getTrending } from '../../services/api'
+import { getNowPlaying, getTrending } from '../../services/api'
 import { Movie } from '../../services/api/types'
 import getTopRate from '../../services/api/getTopRate'
 
 const Home = () => {
   const [trending, setTrending] = useState<Movie[]>([])
   const [topRate, setTopRate] = useState<Movie[]>([])
+  const [playingNow, setPlayingNow] = useState<Movie[]>([])
   const { t } = useTranslation();
 
   useEffect(() => {
-    const getTrendingData = async () => {
+    const loadData = async () => {
       const trendings = await getTrending()
-      // eslint-disable-next-line no-console
-      console.log(trendings)
       setTrending(trendings)
-    }
-    const getTopRateData = async () => {
+
       const topRateData = await getTopRate()
-      // eslint-disable-next-line no-console
-      console.log(topRateData)
       setTopRate(topRateData)
+
+      const playingData = await getNowPlaying()
+      setPlayingNow(playingData)
     }
 
-    getTrendingData()
-    getTopRateData()
+    loadData()
   }, [])
 
   return (
@@ -36,13 +34,11 @@ const Home = () => {
         {trending.length > 0 && (
           <MovieSlider title={t('homepage.trending')}>
             {
-              trending?.slice(0,2).map((trendingItem) => <MovieCard {...trendingItem} />)
+              trending?.map((trendingItem) => <MovieCard {...trendingItem} />)
             }
           </MovieSlider>
         )}
-
       </div>
-
       <div className={styles.cardListWrapper}>
         {trending.length > 0 && (
           <MovieSlider title={t('homepage.topRate')}>
@@ -51,7 +47,15 @@ const Home = () => {
             }
           </MovieSlider>
         )}
-
+      </div>
+      <div className={styles.cardListWrapper}>
+        {trending.length > 0 && (
+          <MovieSlider title={t('homepage.playingNow')}>
+            {
+              playingNow?.map((movie) => <MovieCard {...movie} />)
+            }
+          </MovieSlider>
+        )}
       </div>
     </div>
   )

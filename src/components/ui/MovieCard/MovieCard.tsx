@@ -59,35 +59,37 @@ const MovieCard: React.FC<Props> = ({
     genres
   }, { depth: null})
   return (
-    <div className={styles.container} onClick={() => moveToPage()}>
-      <div
-        className={styles.background}
-        style={{ backgroundImage: `linear-gradient(to right, transparent, #1C1C1CFF 80%), url(${backdrop_path})` }}
-      />
-      <div className={styles.contentWrapper}>
-        <div className={styles.mainContent}>
-          <div className={styles.title}>
-            {title}
-          </div>
-          <div className={styles.description}>
-            {overview}
-          </div>
-          <div className={styles.addInfo}>
-            <Button myStyles={styles.watchTrailer}> {t('movieCard.watchTrailer')} </Button>
-            <div className={styles.circleRatingWrapper}>
-              <CircleRating rating={getVoteAverage()} />
+    <div className={styles.main}>
+      <div className={styles.container} onClick={() => moveToPage()}>
+        <div
+          className={styles.background}
+          style={{ backgroundImage: `linear-gradient(to right, transparent, #1C1C1CFF 80%), url(${backdrop_path})` }}
+        />
+        <div className={styles.contentWrapper}>
+          <div className={styles.mainContent}>
+            <div className={styles.title}>
+              {title}
+            </div>
+            <div className={styles.description}>
+              {overview}
+            </div>
+            <div className={styles.addInfo}>
+              <Button myStyles={styles.watchTrailer}> {t('movieCard.watchTrailer')} </Button>
+              <div className={styles.circleRatingWrapper}>
+                <CircleRating rating={getVoteAverage()} />
+              </div>
             </div>
           </div>
-        </div>
-        <div className={styles.footerContent}>
-          <div className={styles.informationDiv}>
-            <span className={styles.text}>
-            {getYear()}
-          </span>
-            <span className={styles.text}>{runtime ? `${runtime} ${t('movieCard.min')}` : ''}</span>
-          </div>
-          <div className={styles.genresWrapper}>
-            <span className={styles.genres}> {getGenres()} </span>
+          <div className={styles.footerContent}>
+            <div className={styles.informationDiv}>
+              <span className={styles.text}>
+              {getYear()}
+            </span>
+              <span className={styles.text}>{runtime ? `${runtime} ${t('movieCard.min')}` : ''}</span>
+            </div>
+            <div className={styles.genresWrapper}>
+              <span className={styles.genres}> {getGenres()} </span>
+            </div>
           </div>
         </div>
       </div>
