@@ -7,3 +7,4 @@ export { default as signUp } from './singUp';
 export { default as getUser} from './getUser';
 export { default as getTrending} from './getTrending';
 export { default as getNowPlaying} from './getNowPlaying';
+export { default as changeUserLanguage} from './changeUserLanguage';

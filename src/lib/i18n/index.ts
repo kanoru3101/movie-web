@@ -1,18 +1,20 @@
-import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
+import i18n from 'i18next'
+import { initReactI18next } from 'react-i18next'
+import LanguageDetector from 'i18next-browser-languagedetector'
 import uaHeader from './lang/ua/header.json'
 import enHeader from './lang/en/header.json'
-import uaComponents from './lang/ua/components.json';
-import enComponents from './lang/en/components.json';
-import uaPages from './lang/ua/pages.json';
-import enPages from './lang/en/pages.json';
+import uaComponents from './lang/ua/components.json'
+import enComponents from './lang/en/components.json'
+import uaPages from './lang/ua/pages.json'
+import enPages from './lang/en/pages.json'
+import { LANGUAGES } from '../../constants'
 
 const resources = {
   en: {
     translation: {
       ...enHeader,
       ...enComponents,
-      enPages
+      ...enPages
     }
   },
   ua: {
@@ -24,15 +26,12 @@ const resources = {
   }
 };
 
-//const [user] = useUser()
-
-//const defaultUserLanguage = user?.language || 'en'
-
 i18n
   .use(initReactI18next)
+  .use(LanguageDetector)
   .init({
     resources,
-    lng: 'ua',
+    fallbackLng: LANGUAGES.EN,
     interpolation: {
       escapeValue: false,
     }

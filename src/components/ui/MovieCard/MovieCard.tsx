@@ -46,18 +46,7 @@ const MovieCard: React.FC<Props> = ({
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   const moveToPage = (): void => {}
-  // eslint-disable-next-line no-console
-  console.log("#######")
-  // eslint-disable-next-line no-console
-  console.dir({
-    backdrop_path,
-    runtime,
-    release_date,
-    overview,
-    title,
-    vote_average,
-    genres
-  }, { depth: null})
+
   return (
     <div className={styles.main}>
       <div className={styles.container} onClick={() => moveToPage()}>

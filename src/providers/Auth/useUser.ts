@@ -5,10 +5,11 @@ import jwt_decode, { JwtPayload } from 'jwt-decode'
 import { createCookie } from '../../services/cookie'
 import { getUser } from '../../services/api'
 
-type User = AuthUser | null
+export type UseUser = AuthUser | null
 type SetUser = (token: string | null) => Promise<void>
-const useUser = (): {user: User, setUser: SetUser} => {
+const useUser = (): {user: UseUser, setUser: SetUser} => {
   const { user, setUser: setUserInContext } = useContext(AuthContext)
+
   const setUser: SetUser = useCallback(
     async token => {
       if (token) {
@@ -18,7 +19,7 @@ const useUser = (): {user: User, setUser: SetUser} => {
           await createCookie({ key: 'auth', value: token, days: 30 })
           const userData = await getUser()
           setUserInContext(userData)
-          return
+          return;
         }
       }
 
