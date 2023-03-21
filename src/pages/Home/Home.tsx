@@ -34,7 +34,7 @@ const Home = () => {
         {trending.length > 0 && (
           <MovieSlider title={t('homepage.trending')}>
             {
-              trending?.map((trendingItem) => <MovieCard {...trendingItem} />)
+              trending?.map((trendingItem, index) => <MovieCard {...trendingItem} key={index} />)
             }
           </MovieSlider>
         )}
@@ -43,7 +43,7 @@ const Home = () => {
         {trending.length > 0 && (
           <MovieSlider title={t('homepage.topRate')}>
             {
-              topRate?.map((movie) => <MovieCard {...movie} />)
+              topRate?.map((movie, index) => <MovieCard {...movie} key={index} />)
             }
           </MovieSlider>
         )}
@@ -52,7 +52,7 @@ const Home = () => {
         {trending.length > 0 && (
           <MovieSlider title={t('homepage.playingNow')}>
             {
-              nowPlaying?.map((movie) => <MovieCard {...movie} />)
+              nowPlaying?.map((movie, index) => <MovieCard {...movie} key={index} />)
             }
           </MovieSlider>
         )}
