@@ -27,8 +27,7 @@ const Login = () => {
     password: string
   }): Promise<void> => {
     const { token } = await login({ email, password })
-    // eslint-disable-next-line no-console
-    console.log("####", token)
+
     if (token) {
       await setUser(token)
       navigate('/profile')

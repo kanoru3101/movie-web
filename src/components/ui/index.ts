@@ -6,5 +6,16 @@ import ItemList from './ItemList/ItemList'
 import MovieCard from './MovieCard/MovieCard'
 import CircleRating from './CircleRating/CircleRating'
 import MovieSlider from './MovieSlider/MovieSlider'
+import Select from './Select/Select'
 
-export { Button, InputField, Card, Avatar, ItemList, MovieCard, CircleRating, MovieSlider }
+export {
+  Button,
+  InputField,
+  Card,
+  Avatar,
+  ItemList,
+  MovieCard,
+  CircleRating,
+  MovieSlider,
+  Select,
+}

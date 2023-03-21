@@ -1,6 +1,6 @@
 import classes from './Header.module.css'
 import useUser from '../../providers/Auth/useUser'
-import { Avatar } from '../ui'
+import { Avatar, Select } from '../ui'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
@@ -18,6 +18,9 @@ const Header = () => {
         <div className={`${classes.home} ${classes.navItem}`} onClick={() => redirectTo('')}>{t('home')}</div>
         <div className={classes.search}>{t('something')}</div>
         <div className={classes.profileWrapper}>
+          <div className={classes.pickLanguageWrapper}>
+            <Select user={user} key={user?.id}/>
+          </div>
           <div>
             {user?.id ? (
               <Avatar

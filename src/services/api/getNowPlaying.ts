@@ -6,10 +6,10 @@ type AxiosResponse = {
 }
 
 type Response = AxiosResponse['data'];
-const getTopRate = async(): Promise<Response> => {
-  const { data } = await apiClient.get('/movies/top-rate')
+const getNowPlaying = async(): Promise<Response> => {
+  const { data } = await apiClient.get('/movies/now-playing')
 
   return data;
 }
 
-export default getTopRate;
+export default getNowPlaying;

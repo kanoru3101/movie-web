@@ -18,8 +18,8 @@ const MovieSlider: React.FC<Props> = ({
     dots: true,
     infinite: true,
     speed: 1000,
-    autoplay: true,
-    slidesToShow: 2
+    autoplay: false,
+    slidesToShow: 2 // TODO: need to add function base on width items
   }
   return (
     <div className={styles.wrapper}>

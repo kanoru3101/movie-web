@@ -1,3 +1,5 @@
+import { LANGUAGES } from '../../constants'
+
 export type Movie = {
   adult: boolean
   backdrop_path: string
@@ -76,5 +78,5 @@ export type User = {
   email: string,
   name?: string,
   logo?: string,
-  language: string,
+  language: LANGUAGES,
 }

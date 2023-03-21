@@ -1,5 +1,7 @@
 {
   "homepage": {
-    "trending": "trending"
+    "trending": "trending",
+    "topRate": "Top Rate",
+    "playingNow": "Playing Now"
   }
 }

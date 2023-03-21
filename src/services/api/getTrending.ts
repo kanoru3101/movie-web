@@ -2,12 +2,7 @@ import apiClient from ".";
 import { Movie } from './types'
 
 type AxiosResponse = {
-  data: {
-    results: Movie[]
-    total_pages: number
-    total_results: number
-    page: number
-  }
+  data: Movie[]
 }
 
 type Response = AxiosResponse['data'];
