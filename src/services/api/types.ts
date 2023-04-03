@@ -1,6 +1,8 @@
 import { LANGUAGES } from '../../constants'
 
 export type Movie = {
+  id: number
+  imdb_id: string,
   adult: boolean
   backdrop_path: string
   belongs_to_collection?: {
@@ -15,8 +17,6 @@ export type Movie = {
     name: string
   }>
   homepage: string
-  id: number
-  imdb_id: number
   original_language: string
   original_title: string
   overview: string

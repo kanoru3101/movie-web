@@ -1,0 +1,40 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  z-index: 1;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://image.tmdb.org/t/p/original/ss0Os3uWJfQAENILHZUdX8Tt1OC.jpg');
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-size: auto 100vh;
+  opacity: 0.2;
+  z-index: -1;
+}
+
+.movieDetailContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+  height: 70%;
+}
+
+.image {
+  width: 300px;
+  height: 400px;
+}

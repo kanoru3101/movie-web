@@ -4,8 +4,10 @@ import styles from './MovieCard.module.css'
 import { useTranslation } from 'react-i18next'
 import _ from 'lodash'
 import { Button, CircleRating } from '../../ui'
+import { useNavigate } from 'react-router-dom'
 
 type Props = {
+  imdb_id: string
   backdrop_path: string
   release_date: string
   runtime: number
@@ -19,6 +21,7 @@ type Props = {
 }
 
 const MovieCard: React.FC<Props> = ({
+  imdb_id,
   backdrop_path,
   runtime,
   release_date,
@@ -28,6 +31,7 @@ const MovieCard: React.FC<Props> = ({
   genres
 }): ReactElement => {
   const { t } = useTranslation()
+  const navigate = useNavigate()
 
   const getGenres = (): string => {
     let names = genres?.map((item) => item.name) || null
@@ -45,11 +49,13 @@ const MovieCard: React.FC<Props> = ({
   const getVoteAverage = (): number => Number(vote_average.toFixed(1))
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const moveToPage = (): void => {}
+  const moveToPage = (imdbId: string): void => {
+    navigate(`/movie/${imdbId}`)
+  }
 
   return (
     <div className={styles.main}>
-      <div className={styles.container} onClick={() => moveToPage()}>
+      <div className={styles.container} onClick={() => moveToPage(imdb_id)}>
         <div
           className={styles.background}
           style={{ backgroundImage: `linear-gradient(to right, transparent, #1C1C1CFF 80%), url(${backdrop_path})` }}
