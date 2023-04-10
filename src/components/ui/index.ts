@@ -7,6 +7,7 @@ import MovieCard from './MovieCard/MovieCard'
 import CircleRating from './CircleRating/CircleRating'
 import MovieSlider from './MovieSlider/MovieSlider'
 import Select from './Select/Select'
+import Tag from './Tag/Tag';
 
 export {
   Button,
@@ -18,4 +19,5 @@ export {
   CircleRating,
   MovieSlider,
   Select,
+  Tag,
 }

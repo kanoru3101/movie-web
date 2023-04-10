@@ -6,9 +6,12 @@
 .container {
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
   height: 100vh;
-  z-index: 1;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-size: auto 110vh;
 }
 
 .container::before {
@@ -18,23 +21,77 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('https://image.tmdb.org/t/p/original/ss0Os3uWJfQAENILHZUdX8Tt1OC.jpg');
-  background-repeat: no-repeat;
-  background-position-x: center;
-  background-size: auto 100vh;
-  opacity: 0.2;
-  z-index: -1;
+  /*background-color: rgba(0, 0, 0, 0.8); !* затемнюючий колір *!*/
+  z-index: 1;
+}
+
+.backgroundOpacity {
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.95));
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .movieDetailContainer {
   display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0 32px;
+  z-index: 2;
+  flex-grow: 1;
+  flex-wrap: wrap;
+}
+
+.imageWrapper {
+  display: flex;
+  flex: 1;
   justify-content: center;
-  flex-direction: row;
-  width: 100%;
-  height: 70%;
 }
 
 .image {
   width: 300px;
+  height: 400px;
+}
+
+.details {
+  display: flex;
+  flex: 2;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 300px;
+  height: 400px;
+  color: white;
+}
+
+.shortDetail {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.tagsWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.iconWithText {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-right: 16px;
+}
+
+.iconWrapper {
+  color: #ef0000;
+  font-size: 20px;
+  padding: 4px;
+}
+
+.another {
+  width: 100%;
   height: 400px;
 }

@@ -24,10 +24,13 @@ const Select: React.FC<Props> = ({ user }): ReactElement => {
   const handleLanguage = async (data: Option) => {
     setSelectedOption(data)
     const language = data?.value
-    await changeUserLanguage({ language })
-    await i18n.changeLanguage(language)
-    await createCookie({ key: 'i18next', value: language, days: 30 })
-    window.location.reload();
+    if (data.value !== selectedOption?.value) {
+      await changeUserLanguage({ language })
+      await i18n.changeLanguage(language)
+      await createCookie({ key: 'i18next', value: language, days: 30 })
+      window.location.reload();
+    }
+
   }
 
   useMemo((): void => {
@@ -50,12 +53,14 @@ const Select: React.FC<Props> = ({ user }): ReactElement => {
       components={{
         IndicatorSeparator: () => null,
       }}
+      menuPosition={'fixed'}
       styles={{
         option: (baseStyles, state) => ({
           ...baseStyles,
           backgroundColor: state.isFocused ? 'red' : '#1c1c1c',
           padding: '4px 8px',
           color: 'white',
+          cursor: 'pointer'
         }),
         menuList: (baseStyles) => ({
           ...baseStyles,
@@ -80,6 +85,7 @@ const Select: React.FC<Props> = ({ user }): ReactElement => {
           padding: '2px 4px',
           fontSize: 20,
         }),
+        menuPortal: base => ({ ...base, zIndex: 5 })
       }}
     />
   )

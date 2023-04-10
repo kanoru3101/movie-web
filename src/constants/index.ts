@@ -3,3 +3,15 @@ export enum LANGUAGES {
   UA = 'ua',
 }
 
+export enum MOVIE_LANGUAGE {
+  EN= 'en',
+  UA = 'uk',
+}
+
+export enum MOVIE_VIDEO_TYPE {
+  TRAILER = 'Trailer',
+  TEASER = 'Teaser',
+  FEATURETTE = 'Featurette',
+  CLIP = 'Clip'
+}
+
