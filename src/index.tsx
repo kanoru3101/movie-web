@@ -7,17 +7,20 @@ import { BrowserRouter } from 'react-router-dom'
 import AuthProvider from './providers/Auth/AuthProvider'
 import { I18nextProvider } from 'react-i18next';
 import { i18nConfig } from './lib'
+import { ModalProvider } from './providers/Modal'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 )
 root.render(
   <AuthProvider>
-    <I18nextProvider i18n={i18nConfig}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </I18nextProvider>
+    <ModalProvider>
+      <I18nextProvider i18n={i18nConfig}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </I18nextProvider>
+    </ModalProvider>
   </AuthProvider>
 )
 

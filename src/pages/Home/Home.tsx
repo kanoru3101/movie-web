@@ -32,7 +32,7 @@ const Home = () => {
     <div className={styles.homeWrapper}>
       <div className={styles.cardListWrapper}>
         {trending.length > 0 && (
-          <MovieSlider title={t('homepage.trending')}>
+          <MovieSlider title={t<string>('homepage.trending')}>
             {
               trending?.map((trendingItem, index) => <MovieCard {...trendingItem} key={index} />)
             }
@@ -41,7 +41,7 @@ const Home = () => {
       </div>
       <div className={styles.cardListWrapper}>
         {trending.length > 0 && (
-          <MovieSlider title={t('homepage.topRate')}>
+          <MovieSlider title={t<string>('homepage.topRate')}>
             {
               topRate?.map((movie, index) => <MovieCard {...movie} key={index} />)
             }
@@ -50,7 +50,7 @@ const Home = () => {
       </div>
       <div className={styles.cardListWrapper}>
         {trending.length > 0 && (
-          <MovieSlider title={t('homepage.playingNow')}>
+          <MovieSlider title={t<string>('homepage.playingNow')}>
             {
               nowPlaying?.map((movie, index) => <MovieCard {...movie} key={index} />)
             }

@@ -1,0 +1,13 @@
+.modalWrapper {
+  padding: 0;
+  width: 90%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  background-color: rgba(28, 28, 28, 0);
+}
+
+.modalOverlayWrapper {
+  background-color: rgba(0, 0, 0, 0.8);
+}
