@@ -9,8 +9,13 @@ type CreateCookie = {
 type DeleteCookie = {
   key: string
 }
+
 export const createCookie = ({ key, value, days = 7 }: CreateCookie): void => {
   Cookies.set(key, value, { expires: days })
+}
+
+export const getCookie = (name: string): string | undefined => {
+  return Cookies.get(name)
 }
 
 export const deleteCookie = ({ key }: DeleteCookie): void => {

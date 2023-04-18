@@ -1,0 +1,147 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-size: auto 110vh;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /*background-color: rgba(0, 0, 0, 0.8); !* затемнюючий колір *!*/
+  z-index: 1;
+}
+
+.backgroundOpacity {
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.95));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.movieDetailContainer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0 32px;
+  z-index: 2;
+  flex-grow: 1;
+  flex-wrap: wrap;
+}
+
+.imageWrapper {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+
+.image {
+  width: 300px;
+  height: 400px;
+}
+
+.details {
+  display: flex;
+  flex: 2;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 300px;
+  height: 400px;
+  color: white;
+}
+
+.shortDetail {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.tagsWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.iconWithText {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-right: 16px;
+}
+
+.iconWrapper {
+  color: #ef0000;
+  font-size: 20px;
+  padding: 4px;
+}
+
+.trailerBtnWrapper {
+  margin: 0;
+  padding: 8px;
+}
+
+.trailerBtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.youtubeIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 48px;
+  align-self: center;
+  padding-right: 8px;
+}
+
+
+.trailersContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  color: #ffffff;
+  padding: 48px 0;
+}
+
+.trailersWrapper {
+  display: block;
+  position: relative;
+  width: calc(100vw - 100px);
+}
+
+.titleVideoCard {
+  font-size: 24px;
+  padding-left: 48px;
+}
+
+.recommendationContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  color: #ffffff;
+  padding: 48px 0;
+}

@@ -2,6 +2,14 @@
   "homepage": {
     "trending": "trending",
     "topRate": "Top Rate",
-    "playingNow": "Playing Now"
+    "playingNow": "Playing Now",
+    "min": "min",
+    "watchTrailer": "Watch Trailer"
+  },
+  "moviePage": {
+    "trailers": "Trailers",
+    "minutes": "min",
+    "watchTrailer": "Watch Trailer",
+    "recommendations": "Recommendations"
   }
 }

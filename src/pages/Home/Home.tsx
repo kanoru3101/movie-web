@@ -2,10 +2,18 @@ import React, { useEffect, useState } from 'react'
 import styles from './Home.module.css'
 import MovieCard from '../../components/ui/MovieCard/MovieCard'
 import { useTranslation } from 'react-i18next'
-import MovieSlider from '../../components/ui/MovieSlider/MovieSlider'
 import { getNowPlaying, getTrending } from '../../services/api'
 import { Movie } from '../../services/api/types'
 import getTopRate from '../../services/api/getTopRate'
+import { Slider } from '../../components/ui'
+import MovieSlider from '../../components/ui/Slider/MovieSlider/MovieSlider'
+
+
+const sliderSetting = {
+  autoplay: true,
+  slidesToScroll: 3,
+  slidesToShow: 3,
+}
 
 const Home = () => {
   const [trending, setTrending] = useState<Movie[]>([])
@@ -32,29 +40,38 @@ const Home = () => {
     <div className={styles.homeWrapper}>
       <div className={styles.cardListWrapper}>
         {trending.length > 0 && (
-          <MovieSlider title={t('homepage.trending')}>
+          <Slider
+            title={t<string>('homepage.trending')}
+            sliderSetting={sliderSetting}
+          >
             {
               trending?.map((trendingItem, index) => <MovieCard {...trendingItem} key={index} />)
             }
-          </MovieSlider>
+          </Slider>
         )}
       </div>
       <div className={styles.cardListWrapper}>
         {trending.length > 0 && (
-          <MovieSlider title={t('homepage.topRate')}>
+          <Slider
+            title={t<string>('homepage.topRate')}
+            sliderSetting={sliderSetting}
+          >
             {
               topRate?.map((movie, index) => <MovieCard {...movie} key={index} />)
             }
-          </MovieSlider>
+          </Slider>
         )}
       </div>
       <div className={styles.cardListWrapper}>
         {trending.length > 0 && (
-          <MovieSlider title={t('homepage.playingNow')}>
+          <Slider
+            title={t<string>('homepage.playingNow')}
+            sliderSetting={sliderSetting}
+          >
             {
               nowPlaying?.map((movie, index) => <MovieCard {...movie} key={index} />)
             }
-          </MovieSlider>
+          </Slider>
         )}
       </div>
     </div>

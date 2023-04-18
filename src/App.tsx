@@ -3,7 +3,7 @@ import './App.css';
 import {Routes, Route} from "react-router-dom";
 
 import {BaseLayout} from "./layouts";
-import { Home, Auth, Login, Profile } from './pages'
+import { Home, Auth, Login, Profile, Movie } from './pages'
 const App = () => {
   return (
       <>
@@ -13,6 +13,7 @@ const App = () => {
                  <Route path="/login" element={<Login/>} />
                  <Route path="/auth" element={<Auth/>} />
                  <Route path="/profile" element={<Profile/>} />
+                 <Route path="/movie/:imdbId" element={<Movie/>} />
              </Routes>
          </BaseLayout>
       </>

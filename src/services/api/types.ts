@@ -1,6 +1,8 @@
-import { LANGUAGES } from '../../constants'
+import { LANGUAGES, MOVIE_LANGUAGE, MOVIE_VIDEO_TYPE } from '../../constants'
 
 export type Movie = {
+  id: number
+  imdb_id: string,
   adult: boolean
   backdrop_path: string
   belongs_to_collection?: {
@@ -15,8 +17,6 @@ export type Movie = {
     name: string
   }>
   homepage: string
-  id: number
-  imdb_id: number
   original_language: string
   original_title: string
   overview: string
@@ -46,6 +46,7 @@ export type Movie = {
   video: boolean
   vote_average: number
   vote_count: number
+  videos: Video[];
 }
 
 export type TheMoviePagination = {
@@ -53,6 +54,21 @@ export type TheMoviePagination = {
   total_results: number,
   total_pages: number,
   results: MovieListResultObject[]
+}
+
+export type Video = {
+  id: number,
+  movie_db_id: string
+  language: MOVIE_LANGUAGE
+  name: string
+  site: string
+  key: string
+  type: MOVIE_VIDEO_TYPE
+  size: number
+  official: boolean
+  published_at: string
+  created_at: Date;
+  updated_at: Date;
 }
 
 export type MovieListResultObject = {

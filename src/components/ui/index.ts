@@ -4,9 +4,11 @@ import Card from './Card/Card'
 import Avatar from './Avatar/Avatar'
 import ItemList from './ItemList/ItemList'
 import MovieCard from './MovieCard/MovieCard'
+import VideoCard from './VideoCard/VideoCard'
 import CircleRating from './CircleRating/CircleRating'
-import MovieSlider from './MovieSlider/MovieSlider'
-import Select from './Select/Select'
+import LanguageSelect from './LanguageSelect/LanguageSelect'
+import Tag from './Tag/Tag';
+import Slider from './Slider/Slider';
 
 export {
   Button,
@@ -15,7 +17,9 @@ export {
   Avatar,
   ItemList,
   MovieCard,
+  VideoCard,
   CircleRating,
-  MovieSlider,
-  Select,
+  Slider,
+  LanguageSelect,
+  Tag,
 }

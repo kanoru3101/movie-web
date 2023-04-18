@@ -2,6 +2,14 @@
   "homepage": {
     "trending": "Тренди",
     "topRate": "Найкращий рейтинг",
-    "playingNow": "Зараз в кінотеатрах"
+    "playingNow": "Зараз в кінотеатрах",
+    "min": "хв",
+    "watchTrailer": "Дивитися трейлер"
+  },
+  "moviePage": {
+    "trailers": "Трейлери",
+    "minutes": "хв",
+    "watchTrailer": "Дивитися трейлер",
+    "recommendations": "Рекомендації"
   }
 }

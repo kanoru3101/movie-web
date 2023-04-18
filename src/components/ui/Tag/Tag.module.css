@@ -1,0 +1,13 @@
+.tag {
+  width: auto;
+  max-width: 120px;
+  height: 16px;
+  background-color: #ef0000;
+  color: #1c1c1c;
+  padding: 8px;
+  margin: 8px;
+  align-items: center;
+  font-family: bold, serif;
+  cursor: pointer;
+  border-radius: 16px;
+}
