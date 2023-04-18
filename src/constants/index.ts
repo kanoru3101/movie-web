@@ -12,6 +12,9 @@ export enum MOVIE_VIDEO_TYPE {
   TRAILER = 'Trailer',
   TEASER = 'Teaser',
   FEATURETTE = 'Featurette',
-  CLIP = 'Clip'
+  CLIP = 'Clip',
+  BEHIND_THE_SCENES = 'Behind the Scenes',
+  BLOOPERS = 'Bloopers',
+  RECAP = 'Recap'
 }
 

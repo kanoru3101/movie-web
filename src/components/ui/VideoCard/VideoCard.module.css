@@ -1,20 +1,3 @@
-.wrapper {
-  display: block;
-  width: calc(100vw - 100px);
-}
-
-.background {
-  width: 100%;
-  height: 100%;
-  background-image:
-      linear-gradient(to right, transparent 100px, rgba(28, 28, 28, 0.75) 30px, rgba(28, 28, 28, 1) calc(100% - 60px),
-      transparent calc(100% - 60px)),
-      linear-gradient(to left, transparent 60px, #61fbb3 60px, #333 calc(100% - 60px),
-      transparent calc(100% - 60px));
-  background-position: left center, right center;
-  background-repeat: no-repeat;
-}
-
 .trailerItemWrapper {
   display: flex;
   flex-direction: column;
@@ -59,22 +42,4 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.navigationArrow {
-  color: #ef0000;
-  cursor: pointer;
-  right: -32px;
-  top: 50%;
-  font-size: 32px;
-  position: absolute;
-}
-
-.right {
-  right: -32px;
-}
-
-.left {
-  left: -32px;
-  top: 50%;
 }

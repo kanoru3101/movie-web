@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { getMovie } from '../../services/api'
+import { getMovie, getSimilarMovies } from '../../services/api'
 import { Movie } from '../../services/api/types'
 import styles from './Movie.module.css'
-import { Button, Tag, TrailerSlider } from '../../components/ui'
+import { Button, MovieCard, Slider, Tag, VideoCard } from '../../components/ui'
 import { FaCalendarAlt, FaClock } from 'react-icons/fa'
 import { TbRating12Plus, TbRating18Plus } from 'react-icons/tb'
 import { AiFillYoutube } from 'react-icons/ai'
@@ -11,11 +11,12 @@ import { useTranslation } from 'react-i18next'
 import { MOVIE_VIDEO_TYPE } from '../../constants'
 import { useModal } from '../../providers/Modal'
 import { VideoModal } from '../../components/Modals'
-import MovieSlider from '../../components/ui/MovieSlider/MovieSlider'
+import _ from 'lodash'
 
 const MoviePage = () => {
   const { imdbId } = useParams()
   const [movie, setMovie] = useState<Movie | null>(null)
+  const [recommendations, setRecommendations] = useState<Movie[]>([])
   const [trailer, setTrailer] = useState<string | null>(null)
   const [mainTrailer, setMainTrailer] = useState<string | null>(null)
 
@@ -25,8 +26,12 @@ const MoviePage = () => {
   useEffect(() => {
     const loadData = async () => {
       if (imdbId) {
-        const movie = await getMovie({ imdbId })
+        const [movie, recommendations] = await Promise.all([
+          getMovie({ imdbId }),
+          getSimilarMovies({ imdbId }),
+        ])
         setMovie(movie)
+        setRecommendations(recommendations)
         setMainTrailer(getNewestTrailer(movie))
       }
     }
@@ -53,6 +58,45 @@ const MoviePage = () => {
 
     setTrailer(youtubeUrl)
     openModal()
+  }
+
+
+  const groupedVideos = (): ReactElement[] => {
+    const grouped = _?.groupBy(movie?.videos || [], video => video.type) || {};
+
+    const videoTypes = [
+      MOVIE_VIDEO_TYPE.TRAILER,
+      MOVIE_VIDEO_TYPE.CLIP,
+      MOVIE_VIDEO_TYPE.BEHIND_THE_SCENES,
+      MOVIE_VIDEO_TYPE.TEASER,
+      MOVIE_VIDEO_TYPE.FEATURETTE,
+      MOVIE_VIDEO_TYPE.BLOOPERS,
+      MOVIE_VIDEO_TYPE.RECAP
+    ]
+
+    return videoTypes.map((key) => {
+      const videos = grouped[key];
+      if (videos?.length > 0) {
+        return <div className={styles.trailersWrapper}>
+          <Slider
+            title={key}
+            titleStyles={styles.titleVideoCard}
+            sliderSetting={{
+              slidesToShow: 3,
+              slidesToScroll: 3,
+            }}
+          >
+            {
+              videos.map(video => <VideoCard
+                openVideoModal={handleVideoModal}
+                video={video}
+              />)}
+          </Slider>
+        </div>
+      }
+
+      return <></>
+    })
   }
 
   if (!movie) {
@@ -93,7 +137,6 @@ const MoviePage = () => {
                     className={styles.iconWrapper}
                     style={{ fontSize: 24, display: 'flex' }}
                   >
-                    {' '}
                     {movie.adult ? <TbRating18Plus /> : <TbRating12Plus />}{' '}
                   </div>
                 </div>
@@ -133,32 +176,28 @@ const MoviePage = () => {
         <div className={styles.trailersContainer}>
           <h2> {t('moviePage.trailers').toUpperCase()} </h2>
           <div>
-            <TrailerSlider
-              title={"Videos"}
-              videos={movie.videos}
-              openVideoModal={handleVideoModal}
-            />
-            {/*<MovieSlider title={''} slidesToShow={3}>*/}
-            {/*  {movie.videos?.map(video => {*/}
-            {/*    const { id, key, name, official, published_at, site, type } =*/}
-            {/*      video*/}
-            {/*    const trumbnail = `http://img.youtube.com/vi/${key}/hqdefault.jpg`*/}
-            {/*    // eslint-disable-next-line no-console*/}
-            {/*    console.log('###trumbnail', trumbnail)*/}
-            {/*    return (*/}
-            {/*      <div className={styles.trailerItemWrapper} key={id}>*/}
-            {/*        <div*/}
-            {/*          className={styles.trumbnailWrapper}*/}
-            {/*          onClick={() => handleVideoModal(key)}*/}
-            {/*          style={{ backgroundImage: `url(${trumbnail})` }}*/}
-            {/*        />*/}
-            {/*        <div className={styles.cartInfo}>*/}
+            {
+              groupedVideos()
+            }
+          </div>
+        </div>
+      )}
 
-            {/*        </div>*/}
-            {/*      </div>*/}
-            {/*    )*/}
-            {/*  })}*/}
-            {/*</MovieSlider>*/}
+      {recommendations.length > 0 && (
+        <div>
+          <div className={styles.recommendationContainer}>
+            <Slider
+              title={t<string>('moviePage.recommendations')}
+              sliderSetting={{
+                autoplay: true,
+                slidesToScroll: 3,
+                slidesToShow: 3,
+              }}
+            >
+              {
+                recommendations?.map((movie, index) => <MovieCard {...movie} key={index} />)
+              }
+            </Slider>
           </div>
         </div>
       )}

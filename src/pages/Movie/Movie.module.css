@@ -123,3 +123,25 @@
   color: #ffffff;
   padding: 48px 0;
 }
+
+.trailersWrapper {
+  display: block;
+  position: relative;
+  width: calc(100vw - 100px);
+}
+
+.titleVideoCard {
+  font-size: 24px;
+  padding-left: 48px;
+}
+
+.recommendationContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  color: #ffffff;
+  padding: 48px 0;
+}

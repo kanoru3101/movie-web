@@ -9,6 +9,7 @@
   "moviePage": {
     "trailers": "Трейлери",
     "minutes": "хв",
-    "watchTrailer": "Дивитися трейлер"
+    "watchTrailer": "Дивитися трейлер",
+    "recommendations": "Рекомендації"
   }
 }

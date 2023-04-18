@@ -15,7 +15,7 @@ const VideoModal: React.FC<MyModalProps> = ({ youtubeKey }) => {
       <iframe
         width='100%'
         height='95%'
-        src={`https://www.youtube.com/embed/${youtubeKey}`}
+        src={`https://www.youtube.com/embed/${youtubeKey}?vq=2160p`}
         frameBorder='0'
         allow='autoplay; encrypted-media;'
         allowFullScreen

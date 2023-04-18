@@ -2,9 +2,12 @@ import React, { HTMLAttributes, ReactElement, useMemo, useState } from 'react'
 import ReactSelect from 'react-select'
 import { LANGUAGES } from '../../../constants'
 import { changeUserLanguage } from '../../../services/api'
-import { UseUser } from '../../../providers/Auth/useUser'
+import useUser, { UseUser } from '../../../providers/Auth/useUser'
 import { useTranslation } from 'react-i18next'
-import { createCookie } from '../../../services/cookie'
+import { createCookie, getCookie } from '../../../services/cookie'
+import getCookieUser from '../../../providers/Auth/getCookieUser'
+import { JWT_COOKIE_NAME } from '../../../providers/Auth'
+import { LANGUAGE_COOKIE } from '../../../providers/Auth/constants'
 
 type Props = HTMLAttributes<HTMLDivElement> & { user: UseUser }
 
@@ -12,7 +15,7 @@ type Option = {
   value: LANGUAGES
   label: string
 }
-const Select: React.FC<Props> = ({ user }): ReactElement => {
+const LanguageSelect: React.FC<Props> = ({ user }): ReactElement => {
   const [selectedOption, setSelectedOption] = useState<Option | null>()
   const { i18n } = useTranslation()
 
@@ -25,22 +28,19 @@ const Select: React.FC<Props> = ({ user }): ReactElement => {
     setSelectedOption(data)
     const language = data?.value
     if (data.value !== selectedOption?.value) {
-      await changeUserLanguage({ language })
+      if (user) {
+        await changeUserLanguage({ language })
+      }
       await i18n.changeLanguage(language)
-      await createCookie({ key: 'i18next', value: language, days: 30 })
+      await createCookie({ key: 'language', value: language, days: 30 })
       window.location.reload();
     }
 
   }
 
   useMemo((): void => {
-    let value = null as unknown as Option;
-
-    if (!user?.language) {
-      value = options[0]
-    } else {
-      value = options.find(option => option.value === user?.language) || options[0]
-    }
+    const language = (user?.language || getCookie(LANGUAGE_COOKIE) as LANGUAGES | undefined)
+    const value = language ? options.find(option => option.value === language) :  options[0]
 
     setSelectedOption(value)
   }, [user])
@@ -90,4 +90,4 @@ const Select: React.FC<Props> = ({ user }): ReactElement => {
     />
   )
 }
-export default Select
+export default LanguageSelect

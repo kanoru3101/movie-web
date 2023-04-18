@@ -9,6 +9,7 @@
   "moviePage": {
     "trailers": "Trailers",
     "minutes": "min",
-    "watchTrailer": "Watch Trailer"
+    "watchTrailer": "Watch Trailer",
+    "recommendations": "Recommendations"
   }
 }
