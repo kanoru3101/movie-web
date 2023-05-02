@@ -2,5 +2,9 @@
   "movieCard": {
     "min": "min",
     "watchTrailer": "watch trailer"
+  },
+  "castCard": {
+    "character": "Character",
+    "actor": "Actor"
   }
 }

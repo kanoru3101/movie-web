@@ -2,5 +2,9 @@
   "movieCard": {
     "min": "хв",
     "watchTrailer": "дивитися трейлер"
+  },
+  "castCard": {
+    "character": "Персонаж",
+    "actor": "Актор"
   }
 }

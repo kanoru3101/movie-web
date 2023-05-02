@@ -5,6 +5,7 @@ import Avatar from './Avatar/Avatar'
 import ItemList from './ItemList/ItemList'
 import MovieCard from './MovieCard/MovieCard'
 import VideoCard from './VideoCard/VideoCard'
+import CastCard from './CastCard/CastCard'
 import CircleRating from './CircleRating/CircleRating'
 import LanguageSelect from './LanguageSelect/LanguageSelect'
 import Tag from './Tag/Tag';
@@ -22,4 +23,5 @@ export {
   Slider,
   LanguageSelect,
   Tag,
+  CastCard,
 }

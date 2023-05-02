@@ -8,6 +8,7 @@ import enComponents from './lang/en/components.json'
 import uaPages from './lang/ua/pages.json'
 import enPages from './lang/en/pages.json'
 import { LANGUAGES } from '../../constants'
+import { getCookie } from '../../services/cookie'
 
 const resources = {
   en: {
@@ -32,6 +33,7 @@ i18n
   .init({
     resources,
     fallbackLng: LANGUAGES.EN,
+    lng: (getCookie('language') || localStorage.getItem('language') || localStorage.getItem('i18nextLng')) as LANGUAGES,
     interpolation: {
       escapeValue: false,
     }

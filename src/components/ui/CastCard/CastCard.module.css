@@ -1,0 +1,53 @@
+.main {
+  position: relative;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+  height: 340px;
+  width: 300px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 5px;
+  opacity: 0;
+  background-color: rgba(28, 28, 28, 0.75);
+  color: white;
+}
+
+.main:hover .info {
+  opacity: 1;
+  transition: 0.5s ease-out;
+}
+
+.personImg {
+  height: 340px;
+  width: 300px;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.noPerson {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: red;
+  font-size: 16rem;
+  width: 300px;
+}
+
+.infoRow {
+  margin: 5px;
+  font-size: 20px;
+}
+
+.boldText {
+  font-weight: bold;
+}

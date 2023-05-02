@@ -33,6 +33,7 @@ const LanguageSelect: React.FC<Props> = ({ user }): ReactElement => {
       }
       await i18n.changeLanguage(language)
       await createCookie({ key: 'language', value: language, days: 30 })
+      await localStorage.setItem('language', language)
       window.location.reload();
     }
 

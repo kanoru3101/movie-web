@@ -1,9 +1,9 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getMovie, getSimilarMovies } from '../../services/api'
-import { Movie } from '../../services/api/types'
+import { Cast, Movie } from '../../services/api/types'
 import styles from './Movie.module.css'
-import { Button, MovieCard, Slider, Tag, VideoCard } from '../../components/ui'
+import { Button, CastCard, MovieCard, Slider, Tag, VideoCard } from '../../components/ui'
 import { FaCalendarAlt, FaClock } from 'react-icons/fa'
 import { TbRating12Plus, TbRating18Plus } from 'react-icons/tb'
 import { AiFillYoutube } from 'react-icons/ai'
@@ -12,6 +12,7 @@ import { MOVIE_VIDEO_TYPE } from '../../constants'
 import { useModal } from '../../providers/Modal'
 import { VideoModal } from '../../components/Modals'
 import _ from 'lodash'
+import getMovieCast from '../../services/api/getMovieCast'
 
 const MoviePage = () => {
   const { imdbId } = useParams()
@@ -19,20 +20,25 @@ const MoviePage = () => {
   const [recommendations, setRecommendations] = useState<Movie[]>([])
   const [trailer, setTrailer] = useState<string | null>(null)
   const [mainTrailer, setMainTrailer] = useState<string | null>(null)
+  const [cast, setCast] = useState<Array<Cast>>([])
 
   const { t } = useTranslation()
   const { openModal } = useModal()
 
   useEffect(() => {
     const loadData = async () => {
+      window.scrollTo(0, 0);
+
       if (imdbId) {
-        const [movie, recommendations] = await Promise.all([
-          getMovie({ imdbId }),
-          getSimilarMovies({ imdbId }),
-        ])
+        const movie = await getMovie({ imdbId });
         setMovie(movie)
-        setRecommendations(recommendations)
         setMainTrailer(getNewestTrailer(movie))
+
+        const recommendations = await getSimilarMovies({ imdbId });
+        setRecommendations(recommendations)
+
+        const castData = await getMovieCast({ movieImdb: imdbId })
+        setCast(castData)
       }
     }
 
@@ -196,6 +202,25 @@ const MoviePage = () => {
             >
               {
                 recommendations?.map((movie, index) => <MovieCard {...movie} key={index} />)
+              }
+            </Slider>
+          </div>
+        </div>
+      )}
+
+      {cast.length > 0 && (
+        <div>
+          <div className={styles.castContainer}>
+            <Slider
+              title={t<string>('moviePage.cast')}
+              sliderSetting={{
+                autoplay: false,
+                slidesToScroll: 3,
+                slidesToShow: 3,
+              }}
+            >
+              {
+                cast?.map((castData, index) => <CastCard key={index}  {...castData} />)
               }
             </Slider>
           </div>

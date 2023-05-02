@@ -2,7 +2,7 @@ import { LANGUAGES, MOVIE_LANGUAGE, MOVIE_VIDEO_TYPE } from '../../constants'
 
 export type Movie = {
   id: number
-  imdb_id: string,
+  imdb_id: string
   adult: boolean
   backdrop_path: string
   belongs_to_collection?: {
@@ -46,18 +46,18 @@ export type Movie = {
   video: boolean
   vote_average: number
   vote_count: number
-  videos: Video[];
+  videos: Video[]
 }
 
 export type TheMoviePagination = {
-  page: number,
-  total_results: number,
-  total_pages: number,
+  page: number
+  total_results: number
+  total_pages: number
   results: MovieListResultObject[]
 }
 
 export type Video = {
-  id: number,
+  id: number
   movie_db_id: string
   language: MOVIE_LANGUAGE
   name: string
@@ -67,8 +67,8 @@ export type Video = {
   size: number
   official: boolean
   published_at: string
-  created_at: Date;
-  updated_at: Date;
+  created_at: Date
+  updated_at: Date
 }
 
 export type MovieListResultObject = {
@@ -76,8 +76,8 @@ export type MovieListResultObject = {
   adult: boolean
   overview: string
   release_date: string
-  genre_ids: number[],
-  id: number,
+  genre_ids: number[]
+  id: number
   original_title: string
   original_language: string
   title: string
@@ -89,10 +89,46 @@ export type MovieListResultObject = {
 }
 
 export type User = {
-  id: number,
-  slug: string,
-  email: string,
-  name?: string,
-  logo?: string,
-  language: LANGUAGES,
+  id: number
+  slug: string
+  email: string
+  name?: string
+  logo?: string
+  language: LANGUAGES
+}
+
+export type Cast = {
+  id: number
+  credit_id: string
+  person_id: number
+  movie_id: number
+  character: string
+  gender: number | null
+  order: number
+  adult: boolean
+  known_for_department: string
+  cast_id: number
+  created_at: Date
+  updated_at: Date
+  movie: Movie
+  person: Person
+}
+
+type Person = {
+  id: number
+  language: MOVIE_LANGUAGE
+  tmdb_id: number
+  imdb_id: string
+  name: string
+  biography: string
+  gender: number
+  popularity: number
+  place_of_birth: string | null
+  profile_path: string | null
+  adult: boolean
+  homepage: string | null
+  also_known_as: string[]
+  created_at: Date
+  updated_at: Date
+  cast: Cast[]
 }
