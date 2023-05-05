@@ -1,0 +1,64 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  padding: 40px 100px;
+  column-gap: 50px;
+}
+
+.personalInfoColumn {
+  flex: 500px;
+  flex-direction: column;
+  color: white;
+}
+
+.generalInfoColumn {
+  flex: auto;
+  flex-direction: column;
+}
+
+.biography {
+  padding: 0 16px;
+}
+
+.biography h2 {
+  margin-top: 0;
+}
+
+.personImg {
+  height: 450px;
+  width: 300px;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.personalInfo {
+  padding: 16px 0;
+}
+
+.itemPersonInfoTitle {
+  margin: 0;
+  padding: 16px 0 0 0;
+  font-weight: bold;
+}
+
+.itemPersonInfoValue {
+  margin: 0;
+  padding: 2px 0;
+}
+
+.knowForMovieList {
+  display: block;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 500px;
+  color: #ffffff;
+  padding: 48px 0;
+}
+
+.titleSliderKnowFor {
+  font-weight: bold;
+  font-size: 24px;
+  color: white;
+  padding: 20px 10px;
+}

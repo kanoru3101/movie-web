@@ -12,7 +12,7 @@ const CastCard: React.FC<Props> = ({ character, person }): ReactElement => {
   const navigate = useNavigate()
 
   const navigateToPerson = (personId: string): void => {
-    navigate(`/movie/${personId}`)
+    navigate(`/person/${personId}`)
   }
 
   return (

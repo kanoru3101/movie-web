@@ -12,3 +12,4 @@ export { default as getMovie } from './getMovie';
 export { default as getRecommendations } from './getRecommendations';
 export { default as getSimilarMovies } from './getSimilarMovies';
 export { default as getMovieCast} from './getMovieCast';
+export { default as getPerson} from './getPerson';

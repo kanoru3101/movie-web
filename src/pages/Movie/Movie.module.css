@@ -124,10 +124,21 @@
   padding: 48px 0;
 }
 
+.trailerWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%
+}
+
+.content {
+  padding: 48px;
+}
+
 .trailersWrapper {
   display: block;
   position: relative;
-  width: calc(100vw - 100px);
+  width: 100%;
 }
 
 .titleVideoCard {

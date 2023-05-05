@@ -54,8 +54,6 @@ const Slider: React.FC<Props> = ({
       setCurrentSlide(next);
     },
     customPaging: (index: number) => {
-      // eslint-disable-next-line no-console
-      console.log(`index - currentSlide, ${index} : ${currentSlide}`)
       return (
         <button className={index === currentSlide ? styles.activeButton : ""}>
           {index + 1}

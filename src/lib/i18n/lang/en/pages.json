@@ -12,5 +12,19 @@
     "watchTrailer": "Watch Trailer",
     "recommendations": "Recommendations",
     "cast": "Cast"
+  },
+  "personPage": {
+    "biography": "Biography",
+    "personalInfo": "Personal Info",
+    "gender": "Gender",
+    "female": "Female",
+    "male": "Male",
+    "it": "It",
+    "birthday": "Birthday",
+    "deathday": "Deathday",
+    "knownForDepartment": "Known For",
+    "placeOfBirth": "Place of Birth",
+    "yearsOld": "years old",
+    "alsoKnownAs": "Also Known As"
   }
 }

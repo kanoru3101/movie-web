@@ -3,7 +3,14 @@ import { useParams } from 'react-router-dom'
 import { getMovie, getSimilarMovies } from '../../services/api'
 import { Cast, Movie } from '../../services/api/types'
 import styles from './Movie.module.css'
-import { Button, CastCard, MovieCard, Slider, Tag, VideoCard } from '../../components/ui'
+import {
+  Button,
+  CastCard,
+  MovieCard,
+  Slider,
+  Tag,
+  VideoCard,
+} from '../../components/ui'
 import { FaCalendarAlt, FaClock } from 'react-icons/fa'
 import { TbRating12Plus, TbRating18Plus } from 'react-icons/tb'
 import { AiFillYoutube } from 'react-icons/ai'
@@ -27,14 +34,14 @@ const MoviePage = () => {
 
   useEffect(() => {
     const loadData = async () => {
-      window.scrollTo(0, 0);
+      window.scrollTo(0, 0)
 
       if (imdbId) {
-        const movie = await getMovie({ imdbId });
+        const movie = await getMovie({ imdbId })
         setMovie(movie)
         setMainTrailer(getNewestTrailer(movie))
 
-        const recommendations = await getSimilarMovies({ imdbId });
+        const recommendations = await getSimilarMovies({ imdbId })
         setRecommendations(recommendations)
 
         const castData = await getMovieCast({ movieImdb: imdbId })
@@ -66,9 +73,8 @@ const MoviePage = () => {
     openModal()
   }
 
-
   const groupedVideos = (): ReactElement[] => {
-    const grouped = _?.groupBy(movie?.videos || [], video => video.type) || {};
+    const grouped = _?.groupBy(movie?.videos || [], video => video.type) || {}
 
     const videoTypes = [
       MOVIE_VIDEO_TYPE.TRAILER,
@@ -77,28 +83,28 @@ const MoviePage = () => {
       MOVIE_VIDEO_TYPE.TEASER,
       MOVIE_VIDEO_TYPE.FEATURETTE,
       MOVIE_VIDEO_TYPE.BLOOPERS,
-      MOVIE_VIDEO_TYPE.RECAP
+      MOVIE_VIDEO_TYPE.RECAP,
     ]
 
-    return videoTypes.map((key) => {
-      const videos = grouped[key];
+    return videoTypes.map(key => {
+      const videos = grouped[key]
       if (videos?.length > 0) {
-        return <div className={styles.trailersWrapper}>
-          <Slider
-            title={key}
-            titleStyles={styles.titleVideoCard}
-            sliderSetting={{
-              slidesToShow: 3,
-              slidesToScroll: 3,
-            }}
-          >
-            {
-              videos.map(video => <VideoCard
-                openVideoModal={handleVideoModal}
-                video={video}
-              />)}
-          </Slider>
-        </div>
+        return (
+          <div className={styles.trailersWrapper}>
+            <Slider
+              title={key}
+              titleStyles={styles.titleVideoCard}
+              sliderSetting={{
+                slidesToShow: 3,
+                slidesToScroll: 3,
+              }}
+            >
+              {videos.map(video => (
+                <VideoCard openVideoModal={handleVideoModal} video={video} />
+              ))}
+            </Slider>
+          </div>
+        )
       }
 
       return <></>
@@ -178,54 +184,52 @@ const MoviePage = () => {
           </div>
         </div>
       </div>
-      {movie.videos && movie.videos.length > 0 && (
-        <div className={styles.trailersContainer}>
-          <h2> {t('moviePage.trailers').toUpperCase()} </h2>
+      <div className={styles.content}>
+        {movie.videos && movie.videos.length > 0 && (
+          <div className={styles.trailersContainer}>
+            <h2> {t('moviePage.trailers').toUpperCase()} </h2>
+            <div className={styles.trailerWrapper}>{groupedVideos()}</div>
+          </div>
+        )}
+
+        {recommendations.length > 0 && (
           <div>
-            {
-              groupedVideos()
-            }
+            <div className={styles.recommendationContainer}>
+              <Slider
+                title={t<string>('moviePage.recommendations')}
+                sliderSetting={{
+                  autoplay: true,
+                  slidesToScroll: 3,
+                  slidesToShow: 3,
+                }}
+              >
+                {recommendations?.map((movie, index) => (
+                  <MovieCard {...movie} key={index} />
+                ))}
+              </Slider>
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {recommendations.length > 0 && (
-        <div>
-          <div className={styles.recommendationContainer}>
-            <Slider
-              title={t<string>('moviePage.recommendations')}
-              sliderSetting={{
-                autoplay: true,
-                slidesToScroll: 3,
-                slidesToShow: 3,
-              }}
-            >
-              {
-                recommendations?.map((movie, index) => <MovieCard {...movie} key={index} />)
-              }
-            </Slider>
+        {cast.length > 0 && (
+          <div>
+            <div className={styles.castContainer}>
+              <Slider
+                title={t<string>('moviePage.cast')}
+                sliderSetting={{
+                  autoplay: false,
+                  slidesToScroll: 3,
+                  slidesToShow: 3,
+                }}
+              >
+                {cast?.map((castData, index) => (
+                  <CastCard key={index} {...castData} />
+                ))}
+              </Slider>
+            </div>
           </div>
-        </div>
-      )}
-
-      {cast.length > 0 && (
-        <div>
-          <div className={styles.castContainer}>
-            <Slider
-              title={t<string>('moviePage.cast')}
-              sliderSetting={{
-                autoplay: false,
-                slidesToScroll: 3,
-                slidesToShow: 3,
-              }}
-            >
-              {
-                cast?.map((castData, index) => <CastCard key={index}  {...castData} />)
-              }
-            </Slider>
-          </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   )
 }

@@ -114,7 +114,7 @@ export type Cast = {
   person: Person
 }
 
-type Person = {
+export type Person = {
   id: number
   language: MOVIE_LANGUAGE
   tmdb_id: number
@@ -123,6 +123,9 @@ type Person = {
   biography: string
   gender: number
   popularity: number
+  deathday: string | null
+  birthday: string | null
+  known_for_department: string
   place_of_birth: string | null
   profile_path: string | null
   adult: boolean

@@ -10,6 +10,7 @@ import CircleRating from './CircleRating/CircleRating'
 import LanguageSelect from './LanguageSelect/LanguageSelect'
 import Tag from './Tag/Tag';
 import Slider from './Slider/Slider';
+import TextComponent from './TextComponent/TextComponent'
 
 export {
   Button,
@@ -24,4 +25,5 @@ export {
   LanguageSelect,
   Tag,
   CastCard,
+  TextComponent
 }

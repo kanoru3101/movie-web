@@ -12,5 +12,19 @@
     "watchTrailer": "Дивитися трейлер",
     "recommendations": "Рекомендації",
     "cast": "Акторський склад"
+  },
+  "personPage": {
+    "biography": "Біографія",
+    "personalInfo": "Особиста інформація",
+    "gender": "Стать",
+    "female": "Жінка",
+    "male": "Чоловік",
+    "it": "Воно",
+    "birthday": "День народження",
+    "deathday": "День смерті",
+    "knownForDepartment": "Відомий за",
+    "placeOfBirth": "Місце народження",
+    "yearsOld": "років",
+    "alsoKnownAs": "Також відомий як"
   }
 }
