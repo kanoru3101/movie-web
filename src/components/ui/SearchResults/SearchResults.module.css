@@ -1,0 +1,74 @@
+.resultsWrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.blockResult {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px;
+}
+
+.movieContainer {
+  display: flex;
+  justify-content: left;
+  flex-direction: row;
+  cursor: pointer;
+  color: #ffffff;
+  padding: 4px 8px 4px 10px;
+}
+
+.movieContainer:hover {
+  color: rgb(255, 0, 0);
+}
+
+.textBlock {
+  display: flex;
+  width: 80%;
+  justify-content: left;
+  flex-direction: column;
+  color: #bcb9b9;
+}
+
+.image {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+}
+
+.titleBlock {
+  font-weight: bold;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  color: white;
+}
+
+.itemText {
+  margin: 0;
+}
+
+.originalTitle {
+  font-style: oblique;
+}
+
+.showMore {
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: #bcb9b9;
+}
+
+.cast {
+  margin: 0;
+  width: 500px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.showMore:hover {
+  color: #ffffff;
+}

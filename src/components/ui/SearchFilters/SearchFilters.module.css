@@ -1,0 +1,28 @@
+.filterWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+.filterBlock {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  padding-top: 16px;
+}
+
+.filter {
+  margin: 4px;
+  padding: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #bcb9b9;
+  border: #bcb9b9 2px solid;
+}
+
+.activeFilter {
+  color: #ff0000;
+}

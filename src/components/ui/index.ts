@@ -11,6 +11,12 @@ import LanguageSelect from './LanguageSelect/LanguageSelect'
 import Tag from './Tag/Tag';
 import Slider from './Slider/Slider';
 import TextComponent from './TextComponent/TextComponent'
+import CastList from './CastList/CastList'
+import SearchButton from './SearchButton/SearchButton'
+import SearchResults from './SearchResults/SearchResults'
+import Tabs from './Tabs/Tabs'
+import SearchInput from './SearchInput/SearchInput'
+import SearchFilters from './SearchFilters/SearchFilters'
 
 export {
   Button,
@@ -25,5 +31,11 @@ export {
   LanguageSelect,
   Tag,
   CastCard,
-  TextComponent
+  TextComponent,
+  CastList,
+  SearchButton,
+  SearchResults,
+  Tabs,
+  SearchInput,
+  SearchFilters
 }

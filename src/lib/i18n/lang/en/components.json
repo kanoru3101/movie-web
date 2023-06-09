@@ -6,5 +6,12 @@
   "castCard": {
     "character": "Character",
     "actor": "Actor"
+  },
+  "castList": {
+    "as": "as",
+    "acting": "Acting"
+  },
+  "searchButton": {
+    "text": "What need to search?"
   }
 }

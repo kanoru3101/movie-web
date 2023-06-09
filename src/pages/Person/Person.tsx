@@ -1,16 +1,18 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import moment from 'moment'
 import { useParams } from 'react-router-dom'
-import { getPerson } from '../../services/api'
-import { Cast, Movie, Person } from '../../services/api/types'
+import { getPerson, getPersonCast } from '../../services/api'
+import { Cast, Person } from '../../services/api/types'
 import styles from './Person.module.css'
-import { Card, MovieCard, CastCard, Slider, TextComponent } from '../../components/ui'
+import { Card, CastList, Slider, TextComponent } from '../../components/ui'
 import { useTranslation } from 'react-i18next'
-
-import { useModal } from '../../providers/Modal'
 import { RxPerson } from 'react-icons/rx'
 
 import { personUtils } from '../../utils'
+import { generateAgesByLanguage } from '../../utils/personUtils'
+import useUser from '../../providers/Auth/useUser'
+import { fromCountryToMovieLanguage } from '../../utils/convertLanguages'
+import _ from 'lodash'
 
 type GenerateDate = {
   mainDate?: string | null
@@ -18,16 +20,12 @@ type GenerateDate = {
   isShowYearsOld?: boolean
 }
 
-type PersonData = Person & {
-  cast: Array<Cast> & {
-    movie: Movie
-  }
-}
 
 const PersonPage = () => {
   const { imdbId } = useParams()
-  const [person, setPerson] = useState<PersonData | null>(null)
-
+  const { language } = useUser()
+  const [person, setPerson] = useState<Person | null>(null)
+  const [personCast, setPersonCast] = useState<Array<Cast>>([])
   const { t } = useTranslation()
 
   useEffect(() => {
@@ -37,6 +35,8 @@ const PersonPage = () => {
       if (imdbId) {
         const person = await getPerson({ imdbId })
         setPerson(person)
+        const personCast = await getPersonCast({ personImdb: imdbId })
+        setPersonCast(personCast)
       }
     }
 
@@ -51,20 +51,28 @@ const PersonPage = () => {
     if (!mainDate) {
       return null
     }
-    const start = moment(mainDate, 'YYYY-MM-DDD').format('DD.MM.YYYY')
+    const dateFormat = 'DD.MM.YYYY';
+    const start = moment(mainDate, 'YYYY-MM-DDD').format(dateFormat)
     const end = (
       secondDate ? moment(secondDate, 'YYYY-MM-DDD') : moment()
-    ).format('DD.MM.YYYY')
+    ).format(dateFormat)
+
 
     if (isShowYearsOld) {
-      return `${start} (${personUtils.getYears(start, end)} ${t(
-        'personPage.yearsOld'
-      )})`
+      const years = personUtils.getYears(start, end, dateFormat)
+      return `${start} (${generateAgesByLanguage(years, fromCountryToMovieLanguage(language))})`
     }
 
     return start
   }
 
+
+  const getTheMostPopularMovies = (): Array<Cast> => {
+    const limit = 20;
+    const sorted = _.sortBy(personCast, (cast) => -cast.movie.popularity)
+
+    return sorted.length > limit ? sorted.slice(0, limit) : sorted
+  }
   const getPersonInformation = (): ReactElement => {
     const items = [
       { key: 'knownForDepartment', value: person?.known_for_department },
@@ -147,30 +155,33 @@ const PersonPage = () => {
           <TextComponent text={person.biography} />
         </div>
 
-        {person.cast?.length > 0 && (
-          <div className={styles.knowForMovieList}>
-            <Slider
-              title={t<string>('personPage.knownForDepartment')}
-              titleStyles={styles.titleSliderKnowFor}
-              sliderSetting={{
-                autoplay: false,
-                slidesToScroll: 1,
-                slidesToShow: 1,
-                centerMode: false,
-              }}
-              isShowBackground={false}
-            >
-              {person?.cast.map(({ movie}, index) => (
-                <Card
-                  name={movie.title}
-                  image={movie.poster_path}
-                  path={`/movie/${movie.imdb_id}`}
-                  key={index}
-                />
-              ))}
+        {personCast?.length > 0 && (
+          <>
+            <div className={styles.knowForMovieList}>
+              <Slider
+                title={t<string>('personPage.knownForDepartment')}
+                titleStyles={styles.titleSliderKnowFor}
+                sliderSetting={{
+                  autoplay: false,
+                  slidesToScroll: 1,
+                  slidesToShow: 1,
+                  centerMode: false,
+                }}
+                isShowBackground={false}
+              >
+                {getTheMostPopularMovies().map(({ movie}, index) => (
+                  <Card
+                    name={movie.title}
+                    image={movie.poster_path}
+                    path={`/movie/${movie.imdb_id}`}
+                    key={index}
+                  />
+                ))}
 
-            </Slider>
-          </div>
+              </Slider>
+            </div>
+            <CastList cast={personCast} />
+          </>
         )}
       </div>
     </div>

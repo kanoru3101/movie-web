@@ -13,3 +13,5 @@ export { default as getRecommendations } from './getRecommendations';
 export { default as getSimilarMovies } from './getSimilarMovies';
 export { default as getMovieCast} from './getMovieCast';
 export { default as getPerson} from './getPerson';
+export { default as getPersonCast} from './getPersonCast'
+export { default as search} from './search'

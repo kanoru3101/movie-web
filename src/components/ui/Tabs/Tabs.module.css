@@ -1,0 +1,36 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.tabList {
+  margin: 8px 16px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-direction: row;
+  padding: 0;
+}
+
+.hideTabs {
+  display: none;
+}
+
+.tabItem {
+  padding: 8px 16px;
+  list-style: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.58);
+  border-bottom: rgba(255, 255, 255, 0.58) 2px solid;
+}
+
+.activeTab {
+  border-bottom: #ef0000 2px solid;
+  color: rgb(255, 255, 255);
+}
+
+.disableTab {
+  cursor: default;
+}

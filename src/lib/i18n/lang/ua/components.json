@@ -6,5 +6,12 @@
   "castCard": {
     "character": "Персонаж",
     "actor": "Актор"
+  },
+  "castList": {
+    "as": "як",
+    "acting": "Акторство"
+  },
+  "searchButton": {
+    "text": "Що потрібно знайти?"
   }
 }

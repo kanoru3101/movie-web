@@ -15,12 +15,9 @@
 }
 
 .home {
-    flex-grow: 1;
+   width: 200px;
 }
 
-.search {
-    flex-grow: 3;
-}
 
 .profileWrapper {
     display: flex;

@@ -2,12 +2,14 @@ import { useCallback, useContext } from 'react'
 import AuthContext from './AuthContext'
 import { AuthUser } from './type'
 import jwt_decode, { JwtPayload } from 'jwt-decode'
-import { createCookie } from '../../services/cookie'
+import { createCookie, getCookie } from '../../services/cookie'
 import { getUser } from '../../services/api'
+import { LANGUAGE_COOKIE } from './constants'
+import { LANGUAGES } from '../../constants'
 
 export type UseUser = AuthUser | null
 type SetUser = (token: string | null) => Promise<void>
-const useUser = (): {user: UseUser, setUser: SetUser} => {
+const useUser = (): {user: UseUser, setUser: SetUser, language: LANGUAGES} => {
   const { user, setUser: setUserInContext } = useContext(AuthContext)
 
   const setUser: SetUser = useCallback(
@@ -28,7 +30,9 @@ const useUser = (): {user: UseUser, setUser: SetUser} => {
     [setUserInContext]
   )
 
-  return { user, setUser }
+  const language = (user?.language || getCookie(LANGUAGE_COOKIE) || LANGUAGES.EN) as LANGUAGES
+
+  return { user, setUser, language }
 }
 
 export default useUser

@@ -1,0 +1,52 @@
+.groupWrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+  color: white;
+}
+
+.itemWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: #2a2a2a 1px solid;
+  border-radius: 10px;
+  background-color: #2a2a2a;
+  padding: 16px 8px;
+  max-height: 366px;
+  overflow-y: auto;
+}
+
+.itemData {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: calc(100% - 48px);
+  column-gap: 16px;
+  padding: 8px 24px;
+  height: 18px;
+}
+
+.itemData:hover {
+  color: #ef0000;
+}
+.movieTitle {
+  display: flex;
+  flex: 0.5;
+  font-weight: bold;
+  margin: 0;
+  cursor: pointer;
+}
+
+.realiseYear {
+  display: flex;
+  width: 48px;
+  margin: 0;
+}
+
+.characterName {
+  display: flex;
+  flex: 0.3;
+  margin: 0;
+}

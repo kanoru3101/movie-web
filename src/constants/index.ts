@@ -18,3 +18,8 @@ export enum MOVIE_VIDEO_TYPE {
   RECAP = 'Recap'
 }
 
+export enum SEARCH_FILTERS {
+  ALL = 'all',
+  MOVIES = 'movies',
+  PEOPLE = 'people'
+}

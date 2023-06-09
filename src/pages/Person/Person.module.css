@@ -6,14 +6,16 @@
 }
 
 .personalInfoColumn {
-  flex: 500px;
+  /*flex: 500px;*/
+  flex: 1;
   flex-direction: column;
   color: white;
 }
 
 .generalInfoColumn {
-  flex: auto;
+  flex: 4;
   flex-direction: column;
+  max-width: 75%;
 }
 
 .biography {
@@ -47,11 +49,10 @@
 }
 
 .knowForMovieList {
-  display: block;
-  flex-direction: row;
+  flex-shrink: 0;
+  display: flex;
   justify-content: flex-start;
   align-items: center;
-  width: 500px;
   color: #ffffff;
   padding: 48px 0;
 }

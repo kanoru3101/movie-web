@@ -3,7 +3,7 @@ import './App.css';
 import {Routes, Route} from "react-router-dom";
 
 import {BaseLayout} from "./layouts";
-import { Home, Auth, Login, Profile, Movie, Person } from './pages'
+import { Home, Auth, Login, Profile, Movie, Person, Search } from './pages'
 const App = () => {
   return (
     <>
@@ -12,6 +12,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/auth" element={<Auth />} />
+          <Route path="/search" element={<Search />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/movie/:imdbId" element={<Movie />} />
           <Route path="/person/:imdbId" element={<Person />} />

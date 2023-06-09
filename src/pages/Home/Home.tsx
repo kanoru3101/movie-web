@@ -6,8 +6,6 @@ import { getNowPlaying, getTrending } from '../../services/api'
 import { Movie } from '../../services/api/types'
 import getTopRate from '../../services/api/getTopRate'
 import { Slider } from '../../components/ui'
-import MovieSlider from '../../components/ui/Slider/MovieSlider/MovieSlider'
-
 
 const sliderSetting = {
   autoplay: true,

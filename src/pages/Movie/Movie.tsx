@@ -25,7 +25,6 @@ const MoviePage = () => {
   const { imdbId } = useParams()
   const [movie, setMovie] = useState<Movie | null>(null)
   const [recommendations, setRecommendations] = useState<Movie[]>([])
-  const [trailer, setTrailer] = useState<string | null>(null)
   const [mainTrailer, setMainTrailer] = useState<string | null>(null)
   const [cast, setCast] = useState<Array<Cast>>([])
 
@@ -64,14 +63,8 @@ const MoviePage = () => {
     return newestTrailer?.[0]?.key ?? null
   }
 
-  const handleVideoModal = (youtubeUrl: string | null) => {
-    if (!youtubeUrl) {
-      return setTrailer(null)
-    }
-
-    setTrailer(youtubeUrl)
-    openModal()
-  }
+  const handleVideoModal = (youtubeUrl: string | null) =>
+    openModal(<VideoModal youtubeKey={youtubeUrl} />)
 
   const groupedVideos = (): ReactElement[] => {
     const grouped = _?.groupBy(movie?.videos || [], video => video.type) || {}
@@ -117,7 +110,6 @@ const MoviePage = () => {
 
   return (
     <div className={styles.wrapper}>
-      <VideoModal youtubeKey={trailer} />
       <div
         className={styles.container}
         style={{ backgroundImage: `url(${movie?.backdrop_path})` }}

@@ -24,4 +24,5 @@
 
 .cardListWrapper {
   padding: 16px 0;
+  margin-inline: -30px;
 }
