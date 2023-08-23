@@ -1,10 +1,10 @@
 import React, { ReactElement } from 'react'
-import moment from 'moment'
 import styles from './MovieCard.module.css'
 import { useTranslation } from 'react-i18next'
 import _ from 'lodash'
 import { Button, CircleRating } from '../../ui'
 import { useNavigate } from 'react-router-dom'
+import { getRealiseYear } from '../../../utils/movieUtils'
 
 type Props = {
   imdb_id: string
@@ -45,10 +45,6 @@ const MovieCard: React.FC<Props> = ({
     return _.join(names, ' | ')
   }
 
-  const getYear = (): string => moment(release_date).format('YYYY')
-  const getVoteAverage = (): number => Number(vote_average.toFixed(1))
-
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   const moveToPage = (imdbId: string): void => {
     navigate(`/movie/${imdbId}`)
   }
@@ -71,14 +67,14 @@ const MovieCard: React.FC<Props> = ({
             <div className={styles.addInfo}>
               <Button myStyles={styles.watchTrailer}> {t('movieCard.watchTrailer')} </Button>
               <div className={styles.circleRatingWrapper}>
-                <CircleRating rating={getVoteAverage()} />
+                <CircleRating rating={vote_average} />
               </div>
             </div>
           </div>
           <div className={styles.footerContent}>
             <div className={styles.informationDiv}>
               <span className={styles.text}>
-              {getYear()}
+              {getRealiseYear(release_date)}
             </span>
               <span className={styles.text}>{runtime ? `${runtime} ${t('movieCard.min')}` : ''}</span>
             </div>

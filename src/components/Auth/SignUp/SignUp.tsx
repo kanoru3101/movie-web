@@ -99,8 +99,7 @@ const SignUp = () => {
                 className={classes.linkToAuth}
                 onClick={() => redirectToLogin()}
               >
-                {' '}
-                Login{' '}
+                Login
               </p>
             </div>
           </div>

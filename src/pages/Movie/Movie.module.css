@@ -37,11 +37,19 @@
 .movieDetailContainer {
   display: flex;
   justify-content: space-evenly;
-  align-items: center;
+  align-items: flex-start;
   padding: 0 32px;
   z-index: 2;
   flex-grow: 1;
   flex-wrap: wrap;
+}
+
+.leftSide {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center
 }
 
 .imageWrapper {
@@ -55,7 +63,14 @@
   height: 400px;
 }
 
-.details {
+.generalInfo {
+  width: 300px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.rightSide {
   display: flex;
   flex: 2;
   flex-direction: column;
@@ -65,11 +80,42 @@
   color: white;
 }
 
+.title {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+}
+
+.titleYear {
+  margin: 0;
+  padding-left: 8px;
+  color: #bcb9b9;
+  font-weight: normal;
+}
+
+.originalTitle {
+  margin: 0;
+  font-style: italic;
+  font-weight: normal;
+}
+
+.overview {
+  margin: 16px 0;
+}
+
+.infoRow {
+  display: flex;
+  flex-direction: row;
+  margin: 16px 0;
+}
+
 .shortDetail {
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
   padding: 8px 0;
+  column-gap: 32px;
 }
 
 .tagsWrapper {
@@ -85,41 +131,48 @@
   padding-right: 16px;
 }
 
+.adultIcon {
+  padding: 0;
+}
+
 .iconWrapper {
-  color: #ef0000;
+  display: flex;
+  color: #ffffff;
   font-size: 20px;
   padding: 4px;
+  align-items: center;
 }
 
-.trailerBtnWrapper {
-  margin: 0;
-  padding: 8px;
+.homeLink {
+  cursor: pointer;
 }
 
-.trailerBtn {
+.stats {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.statWithText {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
 }
 
-.youtubeIcon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 48px;
-  align-self: center;
+.statWithText > p {
+  margin: 4px;
+}
+.statName {
+  font-weight: bold;
+  color: red;
   padding-right: 8px;
 }
 
-
-.trailersContainer {
+.contentContainer {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  min-height: 100vh;
+  min-height: min-content;
   color: #ffffff;
   padding: 48px 0;
 }
@@ -144,15 +197,4 @@
 .titleVideoCard {
   font-size: 24px;
   padding-left: 48px;
-}
-
-.recommendationContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
-  min-height: 100vh;
-  color: #ffffff;
-  padding: 48px 0;
 }

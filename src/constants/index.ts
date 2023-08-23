@@ -23,3 +23,12 @@ export enum SEARCH_FILTERS {
   MOVIES = 'movies',
   PEOPLE = 'people'
 }
+
+export enum MOVIE_STATUSES {
+  RELEASED = 'Released',
+  CANCELED = 'Canceled',
+  IN_PRODUCTION = 'In Production',
+  PLANNED = 'Planned',
+  POST_PRODUCTION = 'Post Production',
+  RUMORED = 'Rumored'
+}

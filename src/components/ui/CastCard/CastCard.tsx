@@ -36,7 +36,7 @@ const CastCard: React.FC<Props> = ({ character, person }): ReactElement => {
       <div className={styles.info}>
         <p className={styles.infoRow}>
           <span className={styles.boldText}>
-            {`${t('castCard.character')}:`}{' '}
+            {`${t('castCard.character')}:`}
           </span>
           <span> {character} </span>
         </p>

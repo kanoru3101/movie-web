@@ -99,6 +99,7 @@ $duration: .2s;
 }
 
 .circle-hover {
+  cursor: pointer;
   &:hover {
     &:before {
       @include circle-hover;

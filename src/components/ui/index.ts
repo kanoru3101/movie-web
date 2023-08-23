@@ -17,6 +17,8 @@ import SearchResults from './SearchResults/SearchResults'
 import Tabs from './Tabs/Tabs'
 import SearchInput from './SearchInput/SearchInput'
 import SearchFilters from './SearchFilters/SearchFilters'
+import MovieStatus from './MovieStatus/MovieStatus'
+import YoutubeTrailerButton from './YoutubeTrailerButton/YoutubeTrailerButton'
 
 export {
   Button,
@@ -37,5 +39,7 @@ export {
   SearchResults,
   Tabs,
   SearchInput,
-  SearchFilters
+  SearchFilters,
+  MovieStatus,
+  YoutubeTrailerButton,
 }

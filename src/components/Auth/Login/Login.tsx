@@ -84,8 +84,7 @@ const Login = () => {
                 className={classes.linkToAuth}
                 onClick={() => redirectToAuth()}
               >
-                {' '}
-                AUTH{' '}
+                AUTH
               </p>
             </div>
           </div>

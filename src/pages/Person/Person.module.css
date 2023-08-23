@@ -16,6 +16,7 @@
   flex: 4;
   flex-direction: column;
   max-width: 75%;
+  color: white;
 }
 
 .biography {

@@ -4,22 +4,24 @@ import { getMovie, getSimilarMovies } from '../../services/api'
 import { Cast, Movie } from '../../services/api/types'
 import styles from './Movie.module.css'
 import {
-  Button,
   CastCard,
+  CircleRating,
   MovieCard,
   Slider,
   Tag,
-  VideoCard,
+  VideoCard, YoutubeTrailerButton
 } from '../../components/ui'
 import { FaCalendarAlt, FaClock } from 'react-icons/fa'
 import { TbRating12Plus, TbRating18Plus } from 'react-icons/tb'
-import { AiFillYoutube } from 'react-icons/ai'
 import { useTranslation } from 'react-i18next'
 import { MOVIE_VIDEO_TYPE } from '../../constants'
 import { useModal } from '../../providers/Modal'
 import { VideoModal } from '../../components/Modals'
 import _ from 'lodash'
 import getMovieCast from '../../services/api/getMovieCast'
+import MovieStatus from '../../components/ui/MovieStatus/MovieStatus'
+import { GoLink } from 'react-icons/go'
+import { getRealiseYear } from '../../utils/movieUtils'
 
 const MoviePage = () => {
   const { imdbId } = useParams()
@@ -66,6 +68,11 @@ const MoviePage = () => {
   const handleVideoModal = (youtubeUrl: string | null) =>
     openModal(<VideoModal youtubeKey={youtubeUrl} />)
 
+  const convertNumberToPrice = (number: number): string =>
+    number.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    })
   const groupedVideos = (): ReactElement[] => {
     const grouped = _?.groupBy(movie?.videos || [], video => video.type) || {}
 
@@ -116,17 +123,61 @@ const MoviePage = () => {
       >
         <div className={styles.backgroundOpacity}>
           <div className={styles.movieDetailContainer}>
-            <div className={styles.imageWrapper}>
-              <img
-                className={styles.image}
-                src={movie.poster_path}
-                alt={movie.title}
-              />
+            <div className={styles.leftSide}>
+              <div className={styles.imageWrapper}>
+                <img
+                  className={styles.image}
+                  src={movie.poster_path}
+                  alt={movie.title}
+                />
+              </div>
+              <div className={styles.generalInfo}>
+                <MovieStatus status={movie.status} />
+                <div className={`${styles.iconWithText} ${styles.adultIcon}`}>
+                  <div
+                    className={styles.iconWrapper}
+                    style={{ fontSize: 32, display: 'flex' }}
+                  >
+                    {movie.adult ? <TbRating18Plus /> : <TbRating12Plus />}
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className={styles.details}>
-              <h1>{movie.title}</h1>
-              <h4> {movie.tagline} </h4>
-              <span>{movie.overview}</span>
+            <div className={styles.rightSide}>
+              <h1 className={styles.title}>
+                {movie.title}
+                <p className={styles.titleYear}>
+                  {` (${getRealiseYear(movie.release_date)})`}
+                </p>
+              </h1>
+              {movie.title !== movie.original_title && (
+                <h3 className={styles.originalTitle}>{movie.original_title}</h3>
+              )}
+              <div className={styles.infoRow}>
+                <div className={styles.iconWithText}>
+                  <div className={styles.iconWrapper}>
+                    <FaCalendarAlt />
+                  </div>
+                  {movie.release_date}
+                </div>
+                <div className={styles.iconWithText}>
+                  <div className={styles.iconWrapper}>
+                    <FaClock />
+                  </div>
+                  {movie.runtime} {t('moviePage.minutes')}
+                </div>
+              </div>
+
+              <div className={styles.shortDetail}>
+                <div>
+                  <YoutubeTrailerButton youtubeLink={mainTrailer} />
+                </div>
+                <CircleRating rating={movie.vote_average} />
+              </div>
+
+              <h3> {movie.tagline} </h3>
+              <span className={styles.overview}>{movie.overview}</span>
+
               {movie?.genres?.length > 0 && (
                 <div className={styles.tagsWrapper}>
                   {movie.genres.map(({ id, name }) => (
@@ -135,42 +186,27 @@ const MoviePage = () => {
                 </div>
               )}
 
-              <div className={styles.shortDetail}>
-                <div className={styles.iconWithText}>
-                  <div
-                    className={styles.iconWrapper}
-                    style={{ fontSize: 24, display: 'flex' }}
-                  >
-                    {movie.adult ? <TbRating18Plus /> : <TbRating12Plus />}{' '}
-                  </div>
-                </div>
-                <div className={styles.iconWithText}>
-                  <div className={styles.iconWrapper}>
-                    <FaCalendarAlt />
-                  </div>
-                  {movie.release_date}{' '}
-                </div>
-                <div className={styles.iconWithText}>
-                  <div className={styles.iconWrapper}>
-                    <FaClock />
-                  </div>
-                  {movie.runtime} {t('moviePage.minutes')}{' '}
-                </div>
-              </div>
-              <div>
-                {mainTrailer && (
-                  <Button
-                    onClick={() => handleVideoModal(mainTrailer)}
-                    myStyles={styles.trailerBtnWrapper}
-                  >
-                    <div className={styles.trailerBtn}>
-                      <div className={styles.youtubeIcon}>
-                        <AiFillYoutube />
-                      </div>
-                      <div> {t('moviePage.watchTrailer')}</div>
+              <div className={styles.stats}>
+                {movie.homepage && (
+                  <div className={styles.iconWithText}>
+                    <div className={styles.iconWrapper}>
+                      <GoLink /> :
                     </div>
-                  </Button>
+                    <span className={styles.homeLink}> {movie.homepage} </span>
+                  </div>
                 )}
+                <div className={styles.statWithText}>
+                  <p className={styles.statName}> Original Language: </p>
+                  <p>{movie.original_language} </p>
+                </div>
+                <div className={styles.statWithText}>
+                  <p className={styles.statName}> Revenue: </p>
+                  <p>{convertNumberToPrice(Number(movie.revenue))} </p>
+                </div>
+                <div className={styles.statWithText}>
+                  <p className={styles.statName}> Budget: </p>
+                  <p>{convertNumberToPrice(movie.budget)} </p>
+                </div>
               </div>
             </div>
           </div>
@@ -178,7 +214,7 @@ const MoviePage = () => {
       </div>
       <div className={styles.content}>
         {movie.videos && movie.videos.length > 0 && (
-          <div className={styles.trailersContainer}>
+          <div className={styles.contentContainer}>
             <h2> {t('moviePage.trailers').toUpperCase()} </h2>
             <div className={styles.trailerWrapper}>{groupedVideos()}</div>
           </div>
@@ -186,11 +222,12 @@ const MoviePage = () => {
 
         {recommendations.length > 0 && (
           <div>
-            <div className={styles.recommendationContainer}>
+            <div className={styles.contentContainer}>
               <Slider
                 title={t<string>('moviePage.recommendations')}
                 sliderSetting={{
-                  autoplay: true,
+                  centerMode: false,
+                  autoplay: false,
                   slidesToScroll: 3,
                   slidesToShow: 3,
                 }}
@@ -205,20 +242,20 @@ const MoviePage = () => {
 
         {cast.length > 0 && (
           <div>
-            <div className={styles.castContainer}>
               <Slider
                 title={t<string>('moviePage.cast')}
                 sliderSetting={{
+                  centerMode: false,
                   autoplay: false,
-                  slidesToScroll: 3,
-                  slidesToShow: 3,
+                  slidesToScroll: 5,
+                  slidesToShow: 5,
+                  initialSlide: 0
                 }}
               >
                 {cast?.map((castData, index) => (
                   <CastCard key={index} {...castData} />
                 ))}
               </Slider>
-            </div>
           </div>
         )}
       </div>

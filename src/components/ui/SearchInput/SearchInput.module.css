@@ -38,8 +38,6 @@
 input:focus,
 input:hover {
   outline: none;
-  padding: 0.2rem 1rem;
-  border-radius: 1rem;
   border-color: #ff0000;
 }
 

@@ -8,12 +8,13 @@ type Props = {
   isHoverAnimate?: boolean
 }
 const CircleRating: React.FC<Props> = ({ rating, isHoverAnimate = false }): ReactElement => {
-  const percentages = rating * 10
+  const ratingNumber = Number(rating.toFixed(1))
+  const percentages = ratingNumber * 10
 
   return (
     <div className={styles['circle-container']}>
       <div className={`${styles['circle']} ${styles[`percentage-${percentages}`]} ${isHoverAnimate ? styles['circle-hover']: ''}`}>
-        <span>{ rating }</span>
+        <span>{ ratingNumber }</span>
         <div className={styles["percentage-bar"]}></div>
       </div>
     </div>

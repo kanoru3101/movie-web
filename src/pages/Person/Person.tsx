@@ -112,8 +112,8 @@ const PersonPage = () => {
                 {Array.isArray(value) ? (
                   value.map((item, index) => (
                     <p key={index} className={styles.itemPersonInfoValue}>
-                      {' '}
-                      {item}{' '}
+
+                      {item}
                     </p>
                   ))
                 ) : (

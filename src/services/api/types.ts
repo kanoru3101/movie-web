@@ -1,4 +1,4 @@
-import { LANGUAGES, MOVIE_LANGUAGE, MOVIE_VIDEO_TYPE } from '../../constants'
+import { LANGUAGES, MOVIE_LANGUAGE, MOVIE_STATUSES, MOVIE_VIDEO_TYPE } from '../../constants'
 
 export type Movie = {
   id: number
@@ -33,14 +33,14 @@ export type Movie = {
     name: string
   }>
   release_date: string // "2015-05-13",
-  revenue: number
+  revenue: string
   runtime: number
   spoken_languages: Array<{
     english_name: string
     iso_639_1: string
     name: string
   }>
-  status: string
+  status: MOVIE_STATUSES
   tagline: string
   title: string
   video: boolean
@@ -58,7 +58,7 @@ export type APIPagination = {
 
 export type Video = {
   id: number
-  movie_db_id: string
+  tmdb_id: string
   language: MOVIE_LANGUAGE
   name: string
   site: string

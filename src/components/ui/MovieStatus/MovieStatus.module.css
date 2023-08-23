@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px 8px 0;
+  margin: 0;
+}
+.statusText {
+  font-size: medium;
+  font-weight: bold;
+  max-width: 140px;
+  height: 16px;
+  padding-left: 8px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+
+.status {
+  height: 16px;
+  width: 16px;
+  border-radius: 8px;
+}
